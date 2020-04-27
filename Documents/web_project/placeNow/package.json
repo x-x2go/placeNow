@@ -1,0 +1,14 @@
+{
+  "name": "placenow",
+  "version": "1.0.0",
+  "description": "Easy to find which place is open now",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "2go",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
