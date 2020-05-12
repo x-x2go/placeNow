@@ -4,16 +4,29 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta charset="utf-8" />
     <title>Places Search Box</title>
+
     <link rel="stylesheet" href="/static/main.css" />
+    <link rel="stylesheet" href="/static/searchBar.css" />
   </head>
   <body>
-    <input
-      id="pac-input"
-      class="controls"
-      type="text"
-      placeholder="Search Box"
-    />
+    <div id="searchBar">
+      <input
+        id="pac-input"
+        class="controls"
+        type="text"
+        placeholder="Search Box"
+      />
+      <button class="cafe"><i class="fas fa-coffee"></i></button>
+      <button class="restaurants"><i class="fas fa-utensils"></i></button>
+      <button class="market"><i class="fas fa-shopping-cart"></i></button>
+      <button class="hospital"><i class="fas fa-hospital-alt"></i></button>
+    </div>
+
     <div id="map"></div>
+    <script
+      src="https://kit.fontawesome.com/e3c902b187.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="/static/map.js"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_API_KEY&libraries=places&callback=initAutocomplete"

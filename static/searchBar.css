@@ -1,0 +1,52 @@
+button {
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  resize: none;
+}
+
+#searchBar {
+  width: 300px;
+  height: 100%;
+  float: left;
+}
+
+#searchBar button {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  margin: 10px;
+  border-radius: 30px;
+  justify-content: center;
+  color: #fff;
+}
+
+.cafe {
+  background-color: salmon;
+}
+.restaurants {
+  background-color: darksalmon;
+}
+.market {
+  background-color: darkseagreen;
+}
+.hospital {
+  background-color: steelblue;
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  margin: 20px;
+  text-overflow: ellipsis;
+  width: 200px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
