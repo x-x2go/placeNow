@@ -1,7 +1,7 @@
 button {
   border: none;
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 600;
   resize: none;
 }
@@ -22,16 +22,16 @@ button {
   color: #fff;
 }
 
-.cafe {
+#cafe {
   background-color: salmon;
 }
-.restaurants {
+#restaurants {
   background-color: darksalmon;
 }
-.market {
+#market {
   background-color: darkseagreen;
 }
-.hospital {
+#hospital {
   background-color: steelblue;
 }
 
