@@ -118,4 +118,4 @@ node_modules
 package-lock.json
 
 # 임시로 제외
-index.js
+webpack.config.js
