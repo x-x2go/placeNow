@@ -1,4 +1,4 @@
-function getPlace(place) {
+function makePlaceMarker(place) {
   if (!place.geometry) {
     console.log("Returned place contains no geometry");
     return;
@@ -39,7 +39,14 @@ function showPlace() {
 
   // Clear out the old markers.
   // 예전의 marker들을 지움
-  markers.forEach(getPlace(place));
+  markers.forEach(function (marker) {
+    marker.setMap(null);
+  });
+  markers = [];
+
+  var bounds = new google.maps.LatLngBounds();
+
+  markers.forEach(makePlaceMarker(place));
   map.fitBounds(bounds);
 }
 
