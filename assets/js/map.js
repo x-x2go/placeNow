@@ -1,4 +1,4 @@
-function makePlaceMarker(place) {
+export function makePlaceMarker(place) {
   if (!place.geometry) {
     console.log("Returned place contains no geometry");
     return;
@@ -49,9 +49,8 @@ function showPlace() {
   markers.forEach(makePlaceMarker(place));
   map.fitBounds(bounds);
 }
-
-function initAutocomplete() {
-  var map = new google.maps.Map(document.getElementById("map"), {
+window.initAutocomplete = function () {
+  export var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 37.5780721, lng: 126.9662221 },
     zoom: 13,
     mapTypeId: "roadmap",
@@ -104,4 +103,4 @@ function initAutocomplete() {
       });
     }
   });
-}
+};
