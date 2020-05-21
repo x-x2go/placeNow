@@ -7,13 +7,13 @@ const searchMarket = document.getElementById("market");
 const searchHospital = document.getElementById("hospital");
 
 let service;
+
 // 임시 위치 지정
 // const temp = new google.maps.LatLng(-33.8665433, 151.1956316);
 
 function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
-      var place = results[i];
       console.log(result[i] + " ");
       makePlaceMarker(results[i]);
     }
@@ -22,16 +22,29 @@ function callback(results, status) {
 }
 
 function showCafe() {
+  let temp = new google.maps.LatLng(-33.8665433, 151.1956316);
   console.log("cafe");
-  const temp = new google.maps.LatLng(-33.8665433, 151.1956316);
-  let request = {
-    location: temp,
-    radius: "500",
-    query: "cafe",
-  };
+  // let request = {
+  //   location: temp,
+  //   radius: "500",
+  //   type: ["cafe"],
+  // };
 
   service = new google.maps.places.PlacesService(map);
-  service.textSearch(request, callback);
+  service.nearbySearch(
+    { location: temp, radius: 500, type: ["store"] },
+    function (results, status) {
+      console.log("not ok?");
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+          console.log(result[i] + " ");
+          makePlaceMarker(results[i]);
+        }
+      } else {
+        alert("no results");
+      }
+    }
+  );
 }
 
 function showRestaurant() {

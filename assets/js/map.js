@@ -3,6 +3,7 @@ export function makePlaceMarker(place) {
     console.log("Returned place contains no geometry");
     return;
   }
+  console.log("make place marker");
   var icon = {
     url: place.icon,
     size: new google.maps.Size(71, 71),
@@ -30,35 +31,23 @@ export function makePlaceMarker(place) {
   }
 }
 
-function showPlace() {
-  var places = searchBox.getPlaces();
-
-  if (places.length == 0) {
-    return;
-  }
-
-  // Clear out the old markers.
-  // 예전의 marker들을 지움
-  markers.forEach(function (marker) {
-    marker.setMap(null);
-  });
-  markers = [];
-
-  var bounds = new google.maps.LatLngBounds();
-
-  markers.forEach(makePlaceMarker(place));
-  map.fitBounds(bounds);
-}
+var input = document.getElementById("pac-input");
+var bounds;
+var markers = [];
 window.initAutocomplete = function () {
-  export var map = new google.maps.Map(document.getElementById("map"), {
+  var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 37.5780721, lng: 126.9662221 },
     zoom: 13,
     mapTypeId: "roadmap",
   });
 
   // search box를 만들고 UI element에 연결
-  var input = document.getElementById("pac-input");
-  var searchBox = new google.maps.places.SearchBox(input);
+  if (input) {
+    var searchBox = new google.maps.places.SearchBox(input);
+    this.console.log("input is define");
+  } else {
+    this.console.log("can`t find searchBox");
+  }
   //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   // Bias the SearchBox results towards current map's viewport.
@@ -67,11 +56,32 @@ window.initAutocomplete = function () {
     searchBox.setBounds(map.getBounds());
   });
 
-  var markers = [];
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   // 사용자가 장소에 대한 더 많은 정보를 얻으려 선택시, 이벤트 발생
-  searchBox.addListener("places_changed", showPlace());
+  searchBox.addListener("places_changed", function () {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    // Clear out the old markers.
+    // 예전의 marker들을 지움
+    markers.forEach(function (marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+
+    bounds = new google.maps.LatLngBounds();
+
+    for (var i = 0; i < places.length; i++) {
+      console.log(places[i] + " ");
+      makePlaceMarker(places[i]);
+    }
+    //places.forEach(makePlaceMarker(place));
+    map.fitBounds(bounds);
+  });
 
   //place detail
   var request = {
