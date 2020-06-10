@@ -1,6 +1,5 @@
 import { map } from "./initMap";
 import { makePlaceMarker } from "./makeMarker";
-import { setBounds } from "./searchBox";
 
 const searchBar = document.getElementById("searchBar");
 const searchCafe = document.getElementById("cafe");

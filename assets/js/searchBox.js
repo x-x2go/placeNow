@@ -44,13 +44,5 @@ export function searchBox() {
       console.log(places[i] + " ");
       makePlaceMarker(places[i]);
     }
-    //places.forEach(makePlaceMarker(place));
-    if (place.geometry.viewport) {
-      // Only geocodes have viewport.
-      bounds.union(place.geometry.viewport);
-    } else {
-      bounds.extend(place.geometry.location);
-    }
-    map.fitBounds(bounds);
   });
 }
