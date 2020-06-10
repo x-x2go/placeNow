@@ -1,50 +1,50 @@
-import makePlaceMarker from "./map";
-import map from "./map";
+import { map } from "./initMap";
+import { makePlaceMarker } from "./makeMarker";
+import { setBounds } from "./searchBox";
 
+const searchBar = document.getElementById("searchBar");
 const searchCafe = document.getElementById("cafe");
 const searchRestaurants = document.getElementById("restaurants");
 const searchMarket = document.getElementById("market");
 const searchHospital = document.getElementById("hospital");
 
+// let map = document.getElementById("map");
 let service;
+var bounds;
+let center;
 
-// 임시 위치 지정
-// const temp = new google.maps.LatLng(-33.8665433, 151.1956316);
+export function searchBtn() {
+  if (searchBar) {
+    console.log("searchBar is define");
+
+    center = new google.maps.LatLng(37.5780721, 126.9662221);
+    map.addListener("center_changed", function () {
+      center = map.getCenter();
+    });
+  }
+}
 
 function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
-      console.log(result[i] + " ");
       makePlaceMarker(results[i]);
     }
+    map.fitBounds(bounds);
+  } else {
+    alert("no results");
   }
-  console.log("not ok?");
 }
 
 function showCafe() {
-  let temp = new google.maps.LatLng(-33.8665433, 151.1956316);
   console.log("cafe");
-  // let request = {
-  //   location: temp,
-  //   radius: "500",
-  //   type: ["cafe"],
-  // };
+  let request = {
+    location: center,
+    radius: "500",
+    type: ["cafe"],
+  };
 
   service = new google.maps.places.PlacesService(map);
-  service.nearbySearch(
-    { location: temp, radius: 500, type: ["store"] },
-    function (results, status) {
-      console.log("not ok?");
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-          console.log(result[i] + " ");
-          makePlaceMarker(results[i]);
-        }
-      } else {
-        alert("no results");
-      }
-    }
-  );
+  service.nearbySearch(request, callback);
 }
 
 function showRestaurant() {

@@ -1,4 +1,7 @@
 import "../css/styles.css";
 
-import "./map";
+import "./initMap";
+import "./searchBox";
+import "./makeMarker";
+// import "./map";
 import "./search";
