@@ -1,5 +1,6 @@
 import { map } from "./initMap";
-import { makePlaceMarker } from "./makeMarker";
+import { clearMarker, makePlaceMarker } from "./makeMarker";
+import { getPlaceDetail } from "./placeDetail";
 
 const searchBar = document.getElementById("searchBar");
 const searchCafe = document.getElementById("cafe");
@@ -7,8 +8,7 @@ const searchRestaurants = document.getElementById("restaurants");
 const searchMarket = document.getElementById("market");
 const searchHospital = document.getElementById("hospital");
 
-// let map = document.getElementById("map");
-let service;
+export let service;
 var bounds;
 let center;
 
@@ -24,10 +24,11 @@ export function searchBtn() {
 }
 
 function callback(results, status) {
+  clearMarker();
+
   if (status == google.maps.places.PlacesServiceStatus.OK) {
-    for (var i = 0; i < results.length; i++) {
-      makePlaceMarker(results[i]);
-    }
+    makePlaceMarker(results);
+    getPlaceDetail(results);
     map.fitBounds(bounds);
   } else {
     alert("no results");
@@ -48,7 +49,7 @@ function showCafe() {
 
 function showRestaurant() {
   let request = {
-    location: temp,
+    location: center,
     radius: "500",
     type: ["restaurant"],
   };
@@ -59,7 +60,7 @@ function showRestaurant() {
 
 function showMarket() {
   let request = {
-    location: temp,
+    location: center,
     radius: "500",
     type: ["supermarket"],
   };
@@ -70,7 +71,7 @@ function showMarket() {
 
 function showHospital() {
   let request = {
-    location: temp,
+    location: center,
     radius: "500",
     type: ["hospital"],
   };

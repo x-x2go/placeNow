@@ -1,5 +1,5 @@
 import { map } from "./initMap";
-import { makePlaceMarker } from "./makeMarker";
+import { clearMarker, makePlaceMarker } from "./makeMarker";
 
 const input = document.getElementById("pac-input");
 
@@ -33,16 +33,9 @@ export function searchBox() {
 
     // Clear out the old markers.
     // 예전의 marker들을 지움
-    markers.forEach(function (marker) {
-      marker.setMap(null);
-    });
-    markers = [];
 
     let bounds = new google.maps.LatLngBounds();
 
-    for (var i = 0; i < places.length; i++) {
-      console.log(places[i] + " ");
-      makePlaceMarker(places[i]);
-    }
+    makePlaceMarker(places);
   });
 }

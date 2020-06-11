@@ -1,5 +1,5 @@
 import { searchBox } from "./searchBox";
-import { searchBtn } from "./search";
+import { searchBtn } from "./category";
 
 export let map;
 
