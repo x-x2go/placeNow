@@ -7,10 +7,13 @@ const searchCafe = document.getElementById("cafe");
 const searchRestaurants = document.getElementById("restaurants");
 const searchMarket = document.getElementById("market");
 const searchHospital = document.getElementById("hospital");
+const openNow = document.getElementById("openNow");
 
 export let service;
 var bounds;
 let center;
+
+let buttonOn = false;
 
 export function searchBtn() {
   if (searchBar) {
@@ -35,56 +38,58 @@ function callback(results, status) {
   }
 }
 
-function showCafe() {
-  console.log("cafe");
+function isOpen(placeType) {
+  if (!buttonOn) {
+    buttonOn = true;
+    openNow.style.backgroundColor = "salmon";
+    showOpenPlace(placeType);
+  } else {
+    buttonOn = false;
+    openNow.style.backgroundColor = "#cdcdcd";
+    showPlace(placeType);
+  }
+}
+
+function showOpenPlace(placeType) {
   let request = {
     location: center,
     radius: "500",
-    type: ["cafe"],
+    type: [placeType],
+    openNow: true,
   };
 
   service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);
 }
 
-function showRestaurant() {
+function showPlace(placeType) {
   let request = {
     location: center,
     radius: "500",
-    type: ["restaurant"],
+    type: [placeType],
   };
 
   service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);
-}
 
-function showMarket() {
-  let request = {
-    location: center,
-    radius: "500",
-    type: ["supermarket"],
-  };
-
-  service = new google.maps.places.PlacesService(map);
-  service.nearbySearch(request, callback);
-}
-
-function showHospital() {
-  let request = {
-    location: center,
-    radius: "500",
-    type: ["hospital"],
-  };
-
-  service = new google.maps.places.PlacesService(map);
-  service.nearbySearch(request, callback);
+  openNow.addEventListener("click", function () {
+    isOpen(placeType);
+  });
 }
 
 function init() {
-  searchCafe.addEventListener("click", showCafe);
-  searchRestaurants.addEventListener("click", showRestaurant);
-  searchMarket.addEventListener("click", showMarket);
-  searchHospital.addEventListener("click", showHospital);
+  searchCafe.addEventListener("click", function () {
+    showPlace("cafe");
+  });
+  searchRestaurants.addEventListener("click", function () {
+    showPlace("restaurant");
+  });
+  searchMarket.addEventListener("click", function () {
+    showPlace("supermarket");
+  });
+  searchHospital.addEventListener("click", function () {
+    showPlace("hospital");
+  });
 }
 
 init();

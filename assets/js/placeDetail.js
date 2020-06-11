@@ -1,5 +1,4 @@
 import { map } from "./initMap";
-//import { markers } from "./makeMarker";
 import { service } from "./category";
 
 //place detail
