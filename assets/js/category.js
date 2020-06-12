@@ -1,16 +1,16 @@
 import { map } from "./initMap";
 import { clearMarker, makePlaceMarker } from "./makeMarker";
-import { getPlaceDetail } from "./placeDetail";
+import { getPlaceDetail, getCurrentTime } from "./placeDetail";
 
 const searchBar = document.getElementById("searchBar");
 const searchCafe = document.getElementById("cafe");
 const searchRestaurants = document.getElementById("restaurants");
 const searchMarket = document.getElementById("market");
 const searchHospital = document.getElementById("hospital");
+const openSearchBar = document.getElementById("openSearch");
 const openNow = document.getElementById("openNow");
 
 export let service;
-var bounds;
 let center;
 
 let buttonOn = false;
@@ -32,7 +32,6 @@ function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     makePlaceMarker(results);
     getPlaceDetail(results);
-    map.fitBounds(bounds);
   } else {
     alert("no results");
   }
@@ -43,6 +42,7 @@ function isOpen(placeType) {
     buttonOn = true;
     openNow.style.backgroundColor = "salmon";
     showOpenPlace(placeType);
+    getCurrentTime();
   } else {
     buttonOn = false;
     openNow.style.backgroundColor = "#cdcdcd";
@@ -68,6 +68,10 @@ function showPlace(placeType) {
     radius: "500",
     type: [placeType],
   };
+
+  if (openSearchBar.classList.contains("blind")) {
+    openSearchBar.classList.remove("blind");
+  }
 
   service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);

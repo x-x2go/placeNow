@@ -34,8 +34,6 @@ export function searchBox() {
     // Clear out the old markers.
     // 예전의 marker들을 지움
 
-    let bounds = new google.maps.LatLngBounds();
-
     makePlaceMarker(places);
   });
 }

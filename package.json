@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "dev:server": "babel-node init.js",
-    "dev:asset": "webpack --mode development -w"
+    "dev:assets": "webpack --mode development -w"
   },
   "author": "2go",
   "license": "ISC",

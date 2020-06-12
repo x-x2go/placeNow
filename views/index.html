@@ -20,7 +20,13 @@
       <button id="market"><i class="fas fa-shopping-cart"></i></button>
       <button id="hospital"><i class="fas fa-hospital-alt"></i></button>
 
-      <button id="openNow" class="openNow">현재 영업중</button>
+      <div id="openSearch" class="openSearchBar blind">
+        <button id="openNow" class="openNow">현재 영업중</button>
+        <form id="timeBar">
+          <input type="time" id="timeSelection" name="timeSelection" />
+          <input type="button" id="setTimeButton" value="🔍" />
+        </form>
+      </div>
     </div>
 
     <div id="map"></div>
