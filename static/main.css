@@ -2,7 +2,6 @@
        * element that contains the map. */
 
 #map_wrap {
-  width: 100%;
   height: 100%;
 }
 
@@ -12,6 +11,7 @@
 /* Optional: Makes the sample page fill the window. */
 html,
 body {
+  width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -278,16 +278,25 @@ button {
 
 #searchDetail {
   margin-top: 30px;
+  position: absolute;
+  width: 700px;
+  height: 60px;
+  right: 200px;
+  z-index: 1;
+  background-color: rgba(256, 256, 256, 0.7);
+  text-align: center;
 }
 #searchDetail button {
+  display: inline-block;
   width: fit-content;
   height: 40px;
   font-size: 15px;
-  margin: 20px;
+  margin: 10px;
   padding: 0px 15px;
 }
 
 #timeBar {
+  display: inline-block;
   margin: 0px 20px;
 }
 
