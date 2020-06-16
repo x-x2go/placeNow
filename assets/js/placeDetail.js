@@ -94,9 +94,11 @@ function searchByTime() {
 
 export function getCurrentTime() {
   let currentTime = new Date();
+  const currentMin =
+    (currentTime.getMinutes() < 10 ? "0" : "") + currentTime.getMinutes();
   timeSelection.setAttribute(
     "value",
-    `${currentTime.getHours()}:${currentTime.getMinutes()}`
+    `${currentTime.getHours()}:${currentMin}`
   );
   console.log(timeSelection.value);
 }

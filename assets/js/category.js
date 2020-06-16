@@ -7,17 +7,20 @@ const searchCafe = document.getElementById("cafe");
 const searchRestaurants = document.getElementById("restaurants");
 const searchMarket = document.getElementById("market");
 const searchHospital = document.getElementById("hospital");
-const openSearchBar = document.getElementById("openSearch");
+const openSearchBar = document.getElementById("searchDetail");
 const openNow = document.getElementById("openNow");
+const searchAgain = document.getElementById("searchAgain");
 
 export let service;
 let center;
 
-let buttonOn = false;
+let openNow_buttonOn = false;
 
 export function searchBtn() {
   if (searchBar) {
     console.log("searchBar is define");
+
+    init();
 
     center = new google.maps.LatLng(37.5780721, 126.9662221);
     map.addListener("center_changed", function () {
@@ -33,18 +36,19 @@ function callback(results, status) {
     makePlaceMarker(results);
     getPlaceDetail(results);
   } else {
+    console.log(status);
     alert("no results");
   }
 }
 
 function isOpen(placeType) {
-  if (!buttonOn) {
-    buttonOn = true;
+  if (!openNow_buttonOn) {
+    openNow_buttonOn = true;
     openNow.style.backgroundColor = "salmon";
     showOpenPlace(placeType);
     getCurrentTime();
   } else {
-    buttonOn = false;
+    openNow_buttonOn = false;
     openNow.style.backgroundColor = "#cdcdcd";
     showPlace(placeType);
   }
@@ -58,7 +62,6 @@ function showOpenPlace(placeType) {
     openNow: true,
   };
 
-  service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);
 }
 
@@ -73,15 +76,24 @@ function showPlace(placeType) {
     openSearchBar.classList.remove("blind");
   }
 
-  service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);
 
   openNow.addEventListener("click", function () {
     isOpen(placeType);
   });
+
+  searchAgain.addEventListener("click", function () {
+    if (openNow_buttonOn) {
+      showOpenPlace(placeType);
+    } else {
+      showPlace(placeType);
+    }
+  });
 }
 
 function init() {
+  service = new google.maps.places.PlacesService(map);
+
   searchCafe.addEventListener("click", function () {
     showPlace("cafe");
   });
@@ -95,5 +107,3 @@ function init() {
     showPlace("hospital");
   });
 }
-
-init();
