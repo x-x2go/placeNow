@@ -309,5 +309,11 @@ button {
   float: right;
 }
 
+#info_title {
+  font-weight: bold;
+  font-size: 14px;
+  color: darkcyan;
+}
+
 
 

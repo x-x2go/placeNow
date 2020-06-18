@@ -7,31 +7,29 @@ const setTimeBtn = document.getElementById("setTimeButton");
 
 let placeInfo = [];
 //place detail
-export function getPlaceDetail(places) {
-  const infowindow = new google.maps.InfoWindow();
-  // var service = new google.maps.places.PlacesService(map);
 
-  let i = 0;
+export function getPlaceDetail(places) {
+  let place_cnt = 0;
 
   places.forEach(function (place) {
     const request = {
       placeId: place.place_id,
       fields: [
         "name",
+        "url",
         "formatted_address",
         "geometry",
         "opening_hours",
+        "formatted_phone_number",
+        "rating",
         "icon",
       ],
     };
     service.getDetails(request, function (place, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         if (place.opening_hours) {
-          placeInfo[i] = place;
-          i++;
-          console.log(place.name);
-          console.log(place.opening_hours.periods);
-          console.log(place.opening_hours.weekday_text);
+          placeInfo[place_cnt] = place;
+          place_cnt++;
         }
       }
     });
