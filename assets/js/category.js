@@ -10,6 +10,7 @@ const searchHospital = document.getElementById("hospital");
 const openSearchBar = document.getElementById("searchDetail");
 const openNow = document.getElementById("openNow");
 const searchAgain = document.getElementById("searchAgain");
+const closeBtn = document.getElementById("closeAll");
 
 export let service;
 let center;
@@ -65,6 +66,11 @@ function showOpenPlace(placeType) {
   service.nearbySearch(request, callback);
 }
 
+function closeAll() {
+  openSearchBar.classList.add("blind");
+  clearMarker();
+}
+
 function showPlace(placeType) {
   let request = {
     location: center,
@@ -89,6 +95,8 @@ function showPlace(placeType) {
       showPlace(placeType);
     }
   });
+
+  closeBtn.addEventListener("click", closeAll);
 }
 
 function init() {

@@ -73,10 +73,7 @@ function searchByTime() {
             cnt++;
           }
         } else {
-          if (
-            Number(period.open.time) <= searchTime &&
-            searchTime <= Number(period.close.time)
-          ) {
+          if (openTime <= searchTime && searchTime <= closeTime) {
             openPlaces[cnt] = place;
             console.log(openPlaces[cnt].name);
             cnt++;
