@@ -1,6 +1,8 @@
 import { map } from "./initMap";
+import { showPlaceDetail } from "./placeDetail";
 
 export var markers = [];
+let infowindow_contents = [];
 
 export function clearMarker() {
   markers.forEach(function (marker) {
@@ -9,10 +11,15 @@ export function clearMarker() {
   markers = [];
 }
 let infowindow;
+
 export function makePlaceMarker(places) {
   let bounds = new google.maps.LatLngBounds();
   infowindow = new google.maps.InfoWindow();
 
+  infowindow_contents = [];
+
+  console.log("places길이: " + places.length);
+  console.log("초반marker길이: " + markers.length);
   places.forEach(function (place) {
     if (!place.geometry) {
       console.log("Returned place contains no geometry");
@@ -35,9 +42,11 @@ export function makePlaceMarker(places) {
       title: place.name,
       position: place.geometry.location,
     });
+
     markers.push(marker);
     makeInfowindow(place);
 
+    console.log("marker길이: " + markers.length);
     if (place.geometry.viewport) {
       // Only geocodes have viewport.
       bounds.union(place.geometry.viewport);
@@ -46,26 +55,28 @@ export function makePlaceMarker(places) {
     }
   });
 
-  showInfowindow();
+  showInfowindow(markers);
   map.fitBounds(bounds);
 }
 
-let infowindow_contents = [];
-let info_cnt = 0;
-
 function makeInfowindow(place) {
-  infowindow_contents[info_cnt] =
+  let rating = "별점 없음";
+  if (place.rating) {
+    rating = place.rating;
+  }
+
+  const temp_content =
     "<div><div id='info_title'>" +
     place.name +
     "</div><br>" +
     place.vicinity +
     "<br>⭐" +
-    place.rating +
+    rating +
     "</div>";
-  info_cnt++;
+  infowindow_contents.push(temp_content);
 }
 
-function showInfowindow() {
+function showInfowindow(markers) {
   for (let i = 0; i < markers.length; i++) {
     google.maps.event.addListener(markers[i], "click", function () {
       if (infowindow_contents[i]) {

@@ -9,28 +9,26 @@ let placeInfo = [];
 //place detail
 
 export function getPlaceDetail(places) {
-  let place_cnt = 0;
+  placeInfo = [];
 
   places.forEach(function (place) {
     const request = {
       placeId: place.place_id,
       fields: [
         "name",
-        "url",
         "formatted_address",
+        "formatted_phone_number",
         "geometry",
         "opening_hours",
-        "formatted_phone_number",
         "rating",
         "icon",
       ],
     };
     service.getDetails(request, function (place, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
-        if (place.opening_hours) {
-          placeInfo[place_cnt] = place;
-          place_cnt++;
-        }
+        // if (place.opening_hours) {
+        placeInfo.push(place);
+        //}
       }
     });
   });
@@ -47,13 +45,13 @@ function searchByTime() {
   // Need to change simple!
   placeInfo.forEach(function (place) {
     let period;
+
     for (let i = 0; i < place.opening_hours.periods.length; i++) {
       period = place.opening_hours.periods[i];
 
       //예외: 24시간 영업 시
       if (!period.close) {
         openPlaces[cnt] = place;
-        console.log(openPlaces[cnt].name);
         cnt++;
 
         continue;
@@ -67,22 +65,19 @@ function searchByTime() {
           // 예외: 새벽까지 영업 시
           if (openTime <= searchTime || searchTime <= closeTime) {
             openPlaces[cnt] = place;
-            console.log(openPlaces[cnt].name);
             cnt++;
           }
         } else {
           if (openTime <= searchTime && searchTime <= closeTime) {
             openPlaces[cnt] = place;
-            console.log(openPlaces[cnt].name);
             cnt++;
           }
         }
-
         break;
       }
     }
   });
-  console.log(openPlaces.length);
+
   clearMarker();
   makePlaceMarker(openPlaces);
 }
@@ -95,7 +90,6 @@ export function getCurrentTime() {
     "value",
     `${currentTime.getHours()}:${currentMin}`
   );
-  console.log(timeSelection.value);
 }
 
 if (setTimeBtn) {
