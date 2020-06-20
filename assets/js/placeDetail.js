@@ -4,6 +4,7 @@ import { clearMarker, makePlaceMarker } from "./makeMarker";
 
 const timeSelection = document.getElementById("timeSelection");
 const setTimeBtn = document.getElementById("setTimeButton");
+const detailBlock = document.getElementById("placeDetail");
 
 let placeInfo = [];
 //place detail
@@ -40,19 +41,20 @@ function searchByTime() {
   const dayOfWeek = currentTime.getDay();
 
   let openPlaces = [];
-  let cnt = 0;
 
   // Need to change simple!
   placeInfo.forEach(function (place) {
     let period;
+
+    /*****/
+    if (!place.opening_hours) return;
 
     for (let i = 0; i < place.opening_hours.periods.length; i++) {
       period = place.opening_hours.periods[i];
 
       //예외: 24시간 영업 시
       if (!period.close) {
-        openPlaces[cnt] = place;
-        cnt++;
+        openPlaces.push(place);
 
         continue;
       }
@@ -64,13 +66,11 @@ function searchByTime() {
         if (openTime > closeTime) {
           // 예외: 새벽까지 영업 시
           if (openTime <= searchTime || searchTime <= closeTime) {
-            openPlaces[cnt] = place;
-            cnt++;
+            openPlaces.push(place);
           }
         } else {
           if (openTime <= searchTime && searchTime <= closeTime) {
-            openPlaces[cnt] = place;
-            cnt++;
+            openPlaces.push(place);
           }
         }
         break;
@@ -78,8 +78,37 @@ function searchByTime() {
     }
   });
 
+  placeInfo = openPlaces;
+  console.log("장소개수: " + placeInfo.length);
   clearMarker();
-  makePlaceMarker(openPlaces);
+  makePlaceMarker(placeInfo);
+}
+
+export function showPlaceDetail(clicked_place_name) {
+  placeInfo.forEach(function (place) {
+    console.log(place.name);
+    if (clicked_place_name == place.name) {
+      if (detailBlock.classList.contains("blind")) {
+        detailBlock.classList.remove("blind");
+      }
+
+      document.getElementById("placeTitle").innerHTML =
+        "<h1>" + place.name + "</h1>";
+      document.getElementById("placeRating").innerHTML =
+        "<h2>⭐" + place.rating + "</h2>";
+      document.getElementById("address").innerHTML = place.formatted_address;
+      document.getElementById("tel").innerHTML = place.formatted_phone_number;
+      let weekday_text = "";
+      if (place.opening_hours) {
+        for (let i = 0; i < place.opening_hours.weekday_text.length; i++) {
+          weekday_text += place.opening_hours.weekday_text[i] + "<br>";
+        }
+      } else {
+        weekday_text += "영업시간 정보가 없습니다😥";
+      }
+      document.getElementById("weekday").innerHTML = weekday_text;
+    }
+  });
 }
 
 export function getCurrentTime() {

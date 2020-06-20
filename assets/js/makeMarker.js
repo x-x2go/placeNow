@@ -83,6 +83,9 @@ function showInfowindow(markers) {
         infowindow.setContent(infowindow_contents[i]);
         infowindow.setPosition(markers[i].position);
         infowindow.open(map, markers[i]);
+
+        showPlaceDetail(markers[i].title);
+        console.log("marker: " + markers[i].title);
       }
     });
   }

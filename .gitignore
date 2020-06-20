@@ -118,4 +118,4 @@ node_modules
 package-lock.json
 
 # 임시
-temp.js
+temp.html
