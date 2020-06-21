@@ -1,5 +1,6 @@
 import { map } from "./initMap";
 import { clearMarker, makePlaceMarker } from "./makeMarker";
+import { getPlaceDetail } from "./placeDetail";
 
 const input = document.getElementById("pac-input");
 
@@ -35,5 +36,6 @@ export function searchBox() {
     // 예전의 marker들을 지움
 
     makePlaceMarker(places);
+    getPlaceDetail(places);
   });
 }

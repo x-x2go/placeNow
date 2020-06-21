@@ -65,11 +65,15 @@ function makeInfowindow(place) {
     rating = place.rating;
   }
 
+  let vicinity = place.vicinity;
+  if (!place.vicinity) {
+    vicinity = place.formatted_address;
+  }
   const temp_content =
     "<div><div id='info_title'>" +
     place.name +
     "</div><br>" +
-    place.vicinity +
+    vicinity +
     "<br>⭐" +
     rating +
     "</div>";
