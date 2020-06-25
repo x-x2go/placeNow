@@ -9,10 +9,8 @@ const detailBlock = document.getElementById("placeDetail");
 let placeInfo = [];
 //place detail
 
-export async function getPlaceDetail(places) {
-  placeInfo = [];
-
-  places.forEach(function (place) {
+function getDetail(temp_places) {
+  temp_places.forEach(function (place) {
     const request = {
       placeId: place.place_id,
       fields: [
@@ -27,14 +25,22 @@ export async function getPlaceDetail(places) {
     };
     service.getDetails(request, function (place, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
-        // if (place.opening_hours) {
         placeInfo.push(place);
-        //}
       } else {
         console.log(status);
       }
     });
   });
+}
+
+export function getPlaceDetail(places) {
+  placeInfo = [];
+
+  //avoid google OVER_QUERY_LIMIT
+  getDetail(places.slice(0, 9));
+  for (let i = 1; i < Math.round(places.length / 10); i++) {
+    setTimeout(getDetail, 4000 * i, places.slice(10 * i, 10 * (i + 1) - 1));
+  }
 }
 
 function searchByTime() {
@@ -81,13 +87,11 @@ function searchByTime() {
   });
 
   placeInfo = openPlaces;
-  console.log("장소개수: " + placeInfo.length);
   clearMarker();
   makePlaceMarker(placeInfo);
 }
 
 export function showPlaceDetail(clicked_place_name) {
-  console.log("호출시 placeInfo길이: " + placeInfo.length);
   placeInfo.forEach(function (place) {
     console.log(place.name);
     if (clicked_place_name == place.name) {
@@ -99,7 +103,7 @@ export function showPlaceDetail(clicked_place_name) {
         "<h1>" + place.name + "</h1>";
       document.getElementById("placeRating").innerHTML =
         "<h2>⭐" + place.rating + "</h2>";
-      if (place.opening_hours.open_now) {
+      if (place.opening_hours.isOpen()) {
         document.getElementById("placeIsOpen").innerHTML = "영업중";
       } else {
         document.getElementById("placeIsOpen").innerHTML = "영업종료";
