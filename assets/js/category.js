@@ -19,8 +19,6 @@ let openNow_buttonOn = false;
 
 export function searchBtn() {
   if (searchBar) {
-    console.log("searchBar is define");
-
     init();
 
     center = new google.maps.LatLng(37.5780721, 126.9662221);

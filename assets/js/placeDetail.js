@@ -9,7 +9,7 @@ const detailBlock = document.getElementById("placeDetail");
 let placeInfo = [];
 //place detail
 
-export function getPlaceDetail(places) {
+export async function getPlaceDetail(places) {
   placeInfo = [];
 
   places.forEach(function (place) {
@@ -30,6 +30,8 @@ export function getPlaceDetail(places) {
         // if (place.opening_hours) {
         placeInfo.push(place);
         //}
+      } else {
+        console.log(status);
       }
     });
   });
@@ -85,6 +87,7 @@ function searchByTime() {
 }
 
 export function showPlaceDetail(clicked_place_name) {
+  console.log("호출시 placeInfo길이: " + placeInfo.length);
   placeInfo.forEach(function (place) {
     console.log(place.name);
     if (clicked_place_name == place.name) {
@@ -96,6 +99,11 @@ export function showPlaceDetail(clicked_place_name) {
         "<h1>" + place.name + "</h1>";
       document.getElementById("placeRating").innerHTML =
         "<h2>⭐" + place.rating + "</h2>";
+      if (place.opening_hours.open_now) {
+        document.getElementById("placeIsOpen").innerHTML = "영업중";
+      } else {
+        document.getElementById("placeIsOpen").innerHTML = "영업종료";
+      }
       document.getElementById("address").innerHTML = place.formatted_address;
       document.getElementById("tel").innerHTML = place.formatted_phone_number;
       let weekday_text = "";

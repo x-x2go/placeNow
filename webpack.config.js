@@ -3,9 +3,10 @@ const autoprefixer = require("autoprefixer");
 const ExtractCSS = require("mini-css-extract-plugin");
 
 const MODE = process.env.WEBPACK_ENV;
+const ENTRY_FILE = path.resolve(__dirname, "assets", "js", "main.js");
 
 module.exports = {
-  entry: path.resolve(__dirname, "assets", "js", "main.js"),
+  entry: ["@babel/polyfill", ENTRY_FILE],
   mode: MODE,
   module: {
     rules: [

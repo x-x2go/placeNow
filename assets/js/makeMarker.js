@@ -18,8 +18,7 @@ export function makePlaceMarker(places) {
 
   infowindow_contents = [];
 
-  console.log("places길이: " + places.length);
-  console.log("초반marker길이: " + markers.length);
+  console.log("makePlaceMarker: " + places.length);
   places.forEach(function (place) {
     if (!place.geometry) {
       console.log("Returned place contains no geometry");
@@ -46,7 +45,6 @@ export function makePlaceMarker(places) {
     markers.push(marker);
     makeInfowindow(place);
 
-    console.log("marker길이: " + markers.length);
     if (place.geometry.viewport) {
       // Only geocodes have viewport.
       bounds.union(place.geometry.viewport);

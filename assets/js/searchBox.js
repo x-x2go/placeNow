@@ -8,7 +8,6 @@ export function searchBox() {
   // search box를 만들고 UI element에 연결
   if (input) {
     var searchBox = new google.maps.places.SearchBox(input);
-    console.log("input is define");
   } else {
     console.log("can`t find searchBox");
   }
