@@ -1,5 +1,5 @@
 import { map } from "./initMap";
-import { showPlaceDetail } from "./placeDetail";
+import { showPlaceDetail, hidePlaceDetail } from "./placeDetail";
 
 export var markers = [];
 let infowindow_contents = [];
@@ -68,9 +68,9 @@ function makeInfowindow(place) {
     vicinity = place.formatted_address;
   }
   const temp_content =
-    "<div><div id='info_title'>" +
+    "<div><div id='infoTitle' class='info_title'>" +
     place.name +
-    "</div><br>" +
+    "&nbsp;&nbsp;&nbsp;&#62;&nbsp;&nbsp;</div><br>" +
     vicinity +
     "<br>⭐" +
     rating +
@@ -80,15 +80,23 @@ function makeInfowindow(place) {
 
 function showInfowindow(markers) {
   for (let i = 0; i < markers.length; i++) {
-    google.maps.event.addListener(markers[i], "click", function () {
+    google.maps.event.addListener(markers[i], "click", async function () {
       if (infowindow_contents[i]) {
         infowindow.setContent(infowindow_contents[i]);
         infowindow.setPosition(markers[i].position);
-        infowindow.open(map, markers[i]);
+        await infowindow.open(map, markers[i]);
 
-        showPlaceDetail(markers[i].title);
+        document
+          .getElementById("infoTitle")
+          .addEventListener("click", function () {
+            showPlaceDetail(markers[i].title);
+          });
+
         console.log("marker: " + markers[i].title);
       }
     });
   }
+  google.maps.event.addListener(infowindow, "closeclick", function () {
+    hidePlaceDetail();
+  });
 }

@@ -279,7 +279,6 @@ button {
 }
 
 #searchDetail {
-  margin-top: 30px;
   position: absolute;
   width: 60%;
   height: 60px;
@@ -287,6 +286,7 @@ button {
   right: 10%;
   background-color: rgba(256, 256, 256, 0.7);
   text-align: center;
+  bottom: 30px;
 }
 
 #searchDetail button {
@@ -309,10 +309,14 @@ button {
   float: right;
 }
 
-#info_title {
+.info_title {
   font-weight: bold;
   font-size: 14px;
   color: darkcyan;
+  height: 30px;
+  text-align: center;
+  line-height: 2;
+  background-color: #cdcdcd;
 }
 
 #placeDetail {

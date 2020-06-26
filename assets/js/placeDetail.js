@@ -81,7 +81,6 @@ function searchByTime() {
             openPlaces.push(place);
           }
         }
-        break;
       }
     }
   });
@@ -91,9 +90,14 @@ function searchByTime() {
   makePlaceMarker(placeInfo);
 }
 
+export function hidePlaceDetail() {
+  detailBlock.classList.add("blind");
+}
+
 export function showPlaceDetail(clicked_place_name) {
-  placeInfo.forEach(function (place) {
+  placeInfo.forEach(async function (place) {
     console.log(place.name);
+
     if (clicked_place_name == place.name) {
       if (detailBlock.classList.contains("blind")) {
         detailBlock.classList.remove("blind");
@@ -101,15 +105,26 @@ export function showPlaceDetail(clicked_place_name) {
 
       document.getElementById("placeTitle").innerHTML =
         "<h1>" + place.name + "</h1>";
-      document.getElementById("placeRating").innerHTML =
-        "<h2>⭐" + place.rating + "</h2>";
-      if (place.opening_hours.isOpen()) {
-        document.getElementById("placeIsOpen").innerHTML = "영업중";
+
+      if (place.rating) {
+        document.getElementById("placeRating").innerHTML =
+          "<h2>⭐" + place.rating + "</h2>";
       } else {
-        document.getElementById("placeIsOpen").innerHTML = "영업종료";
+        document.getElementById("placeRating").innerHTML =
+          "<h2>⭐별점없음</h2>";
       }
+
+      if (place.opening_hours.open_now != undefined) {
+        if (place.opening_hours.open_now) {
+          document.getElementById("placeIsOpen").innerHTML = "영업중";
+        } else {
+          document.getElementById("placeIsOpen").innerHTML = "영업종료";
+        }
+      }
+
       document.getElementById("address").innerHTML = place.formatted_address;
       document.getElementById("tel").innerHTML = place.formatted_phone_number;
+
       let weekday_text = "";
       if (place.opening_hours) {
         for (let i = 0; i < place.opening_hours.weekday_text.length; i++) {
