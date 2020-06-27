@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Myeongjo&display=swap);
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 
@@ -321,12 +322,14 @@ button {
 
 #placeDetail {
   width: 280px;
-  height: 300px;
+  height: 350px;
   margin: 10px;
+  margin-top: 50px;
+  font-family: "Nanum Myeongjo", serif;
 }
 #placeDetail h1 {
   font-weight: bold;
-  font-size: 26px;
+  font-size: 24px;
   line-height: 2;
 }
 #placeDetail h2 {
@@ -334,42 +337,62 @@ button {
   font-size: 20px;
 }
 .place_title {
-  width: 100%;
-  height: 50px;
+  width: 280px;
   border-bottom: 1.5px solid #cdcdcd;
+}
+.info_row {
+  width: 100%;
+  margin: 10px 0;
 }
 .place_rating {
   margin: 15px 0;
   display: inline-block;
 }
+.place_rating i {
+  color: #faeb78;
+  margin: 0 5px;
+}
 .place_isOpen {
   width: 100px;
+  height: 35px;
+  font-family: "Jua", sans-serif;
+  letter-spacing: 5px;
   text-align: center;
   float: right;
-  margin: 15px 0;
+  margin: 7px 0;
   margin-right: 20px;
   border-radius: 30px;
-  background-color: darksalmon;
-  font-size: 18px;
-  line-height: 1.8;
+  background-image: linear-gradient(to right, #37ecba, #72afd3);
+  font-size: 20px;
+  line-height: 2;
   color: #fff;
-  font-weight: 600;
 }
 
 #placeDetail span {
-  width: 20px;
+  width: 25px;
   height: 20px;
   display: inline-block;
-  margin: 10px;
+  margin: 15px 5px 15px 10px;
   vertical-align: top;
 }
+
+#placeDetail span i {
+  background: linear-gradient(to right, #37ecba, #72afd3);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 20px;
+}
+
 .place_info {
   display: inline-block;
   margin: 10px 0;
-  width: 230px;
+  width: 200px;
   font-size: 14px;
   font-weight: 200;
   line-height: 20px;
+  padding: 5px 0 5px 10px;
+  border-left: 2px solid #dfdfdf;
 }
 
 

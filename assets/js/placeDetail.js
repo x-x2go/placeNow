@@ -108,10 +108,10 @@ export function showPlaceDetail(clicked_place_name) {
 
       if (place.rating) {
         document.getElementById("placeRating").innerHTML =
-          "<h2>⭐" + place.rating + "</h2>";
+          "<h2><i class='fas fa-star'></i>" + place.rating + "</h2>";
       } else {
         document.getElementById("placeRating").innerHTML =
-          "<h2>⭐별점없음</h2>";
+          "<h2><i class='fas fa-star'></i>별점없음</h2>";
       }
 
       if (place.opening_hours.open_now != undefined) {
