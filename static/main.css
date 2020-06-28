@@ -251,16 +251,28 @@ button {
 }
 
 #cafe {
-  background-color: salmon;
+  background-color: #96c7cb;
 }
 #restaurants {
-  background-color: darksalmon;
+  background-color: #89cdb8;
+}
+#bakery {
+  background-color: #95d8ad;
 }
 #market {
-  background-color: darkseagreen;
+  background-color: #b4eaae;
+}
+#shopping_mall {
+  background-color: #e2d4a3;
 }
 #hospital {
-  background-color: steelblue;
+  background-color: #cf88b4;
+}
+#pharmacy {
+  background-color: #c490d0;
+}
+#bank {
+  background-color: #b38edb;
 }
 
 #pac-input {
@@ -269,14 +281,16 @@ button {
   font-size: 15px;
   font-weight: 300;
   margin-left: 12px;
-  padding: 0 11px 0 13px;
+  padding: 5px 11px 5px 13px;
   margin: 20px;
   text-overflow: ellipsis;
-  width: 200px;
+  width: 220px;
+  border: 1px solid #dcdcdc;
+  border-radius: 30px;
 }
 
 #pac-input:focus {
-  border-color: #4d90fe;
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
 }
 
 #searchDetail {
@@ -297,6 +311,7 @@ button {
   font-size: 15px;
   margin: 10px;
   padding: 0px 15px;
+  border-radius: 30px;
 }
 
 #timeBar {
@@ -304,6 +319,23 @@ button {
   margin: 0px 20px;
 }
 
+#timeSelection {
+  border: 1px solid #cdcdcd;
+  border-radius: 30px;
+  padding: 5px;
+  padding-left: 15px;
+  margin-right: -35px;
+  position: relative;
+  z-index: 3;
+}
+#setTimeButton {
+  border: 1px solid #cdcdcd;
+  width: 50px !important;
+  height: 30px !important;
+  padding-right: 0 !important;
+  color: #ffffff;
+  background-image: linear-gradient(to right, #37ecba, #72afd3);
+}
 #closeAll {
   width: 10px;
   height: 10px;

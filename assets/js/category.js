@@ -43,7 +43,7 @@ function callback(results, status) {
 function isOpen(placeType) {
   if (!openNow_buttonOn) {
     openNow_buttonOn = true;
-    openNow.style.backgroundColor = "salmon";
+    openNow.style.backgroundColor = "#FF6E6E";
     showOpenPlace(placeType);
     getCurrentTime();
   } else {
