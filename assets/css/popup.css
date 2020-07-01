@@ -1,0 +1,69 @@
+.popup_wrap {
+  cursor: auto;
+  height: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+}
+
+.popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -100%);
+  background-color: white;
+  border-radius: 3px;
+  font-family: sans-serif;
+  overflow-y: auto;
+  border: 1px solid #cdcdcd;
+  box-shadow: 0px 1px 0px 0px rgba(150, 150, 150, 0.5);
+}
+.popup-anchor {
+  position: absolute;
+  width: 100%;
+  bottom: 1px;
+  left: 0;
+}
+.popup-anchor::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, 0);
+
+  width: 22px;
+  height: 12px;
+  background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png");
+}
+.info_title {
+  border-bottom: 1px solid #cdcdcd;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: BOLD;
+  color: darkslateblue;
+}
+.place_name {
+  display: inline-block;
+  max-width: 140px;
+}
+.info_rest {
+  margin: 5px;
+  padding: 7px;
+  font-size: 14px;
+}
+.moreDetail {
+  width: 25px;
+  height: 25px;
+  float: right;
+  border: 1px solid #cdcdcd;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+.moreDetail:hover {
+  background-image: linear-gradient(to right, #37ecba, #72afd3);
+  color: #ffffff;
+}

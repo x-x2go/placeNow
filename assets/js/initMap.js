@@ -1,5 +1,6 @@
 import { searchBox } from "./searchBox";
 import { searchBtn } from "./category";
+import { initPopup } from "./makePopup";
 
 export let map;
 
@@ -11,4 +12,5 @@ window.initAutocomplete = function () {
   });
   searchBox();
   searchBtn();
+  initPopup();
 };
