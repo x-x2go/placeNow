@@ -1,14 +1,20 @@
 import { map } from "./initMap";
 
-let Popup;
+let Popup, popup;
 
 export function initPopup() {
   Popup = createPopupClass();
 }
 
 export function createPopup(position, content) {
-  const popup = new Popup(position, content);
+  popup = new Popup(position, content);
   popup.setMap(map);
+}
+
+export function removePopup() {
+  if (popup != undefined) {
+    popup.setMap(null);
+  }
 }
 
 function createPopupClass() {
@@ -20,12 +26,12 @@ function createPopupClass() {
 
     const popupInfo = document.createElement("div");
     popupInfo.className = "popup";
-    this.contentNode.appendChild(popupInfo); // This zero-height div is positioned at the bottom of the bubble.
+    this.contentNode.appendChild(popupInfo);
     popupInfo.innerHTML = content;
 
     const popupAnchor = document.createElement("div");
     popupAnchor.className = "popup-anchor";
-    this.contentNode.appendChild(popupAnchor); // This zero-height div is positioned at the bottom of the tip.
+    this.contentNode.appendChild(popupAnchor);
 
     google.maps.OverlayView.preventMapHitsAndGesturesFrom(this.contentNode);
   }
@@ -42,7 +48,7 @@ function createPopupClass() {
   };
 
   Popup.prototype.draw = function () {
-    var divPosition = this.getProjection().fromLatLngToDivPixel(this.position); // Hide the popup when it is far out of view.
+    var divPosition = this.getProjection().fromLatLngToDivPixel(this.position);
 
     var display =
       Math.abs(divPosition.x) < 4000 && Math.abs(divPosition.y) < 4000

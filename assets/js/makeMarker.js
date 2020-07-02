@@ -1,6 +1,6 @@
 import { map } from "./initMap";
 import { showPlaceDetail, hidePlaceDetail } from "./placeDetail";
-import { Popup, createPopup } from "./makePopup";
+import { Popup, createPopup, removePopup } from "./makePopup";
 
 export var markers = [];
 let infowindow_contents = [];
@@ -71,7 +71,9 @@ function makeInfowindow(place) {
   const temp_content =
     "<div id='infoTitle' class='info_title'><div class='place_name'>" +
     place.name +
-    "</div><div class='moreDetail'>&#62;</div></div><div class='info_rest'>" +
+    "</div><div class='more_detail' onclick='showPlaceDetail(\"" +
+    place.name +
+    "\")'>&#62;</div></div><div class='info_rest'>" +
     vicinity +
     "<br>⭐" +
     rating +
@@ -86,11 +88,15 @@ function showInfowindow(markers) {
         // infowindow.setContent(infowindow_contents[i]);
         // infowindow.setPosition(markers[i].position);
         // await infowindow.open(map, markers[i]);
+        await removePopup();
         await createPopup(markers[i].position, infowindow_contents[i]);
 
-        const infoTitle = document.getElementById("infoTitle");
-        if (infoTitle) {
-          infoTitle.addEventListener("click", function () {
+        const moreDetail = document.getElementById("moreDetail");
+        console.log(moreDetail);
+        if (moreDetail) {
+          console.log("moreDetai is define");
+          moreDetail.addEventListener("click", function () {
+            console.log("click");
             showPlaceDetail(markers[i].title);
           });
         }
@@ -99,7 +105,4 @@ function showInfowindow(markers) {
       }
     });
   }
-  google.maps.event.addListener(infowindow, "closeclick", function () {
-    hidePlaceDetail();
-  });
 }

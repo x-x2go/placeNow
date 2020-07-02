@@ -9,10 +9,12 @@ const detailBlock = document.getElementById("placeDetail");
 let placeInfo = [];
 //place detail
 
-function getDetail(temp_places) {
-  temp_places.forEach(function (place) {
+export async function getPlaceDetail(temp_places) {
+  let temp_placeInfo = [];
+
+  await temp_places.forEach(function (temp_place) {
     const request = {
-      placeId: place.place_id,
+      placeId: temp_place.place_id,
       fields: [
         "name",
         "formatted_address",
@@ -28,18 +30,15 @@ function getDetail(temp_places) {
         placeInfo.push(place);
       } else {
         console.log(status);
+        temp_placeInfo.push(temp_place);
       }
     });
   });
-}
 
-export function getPlaceDetail(places) {
-  placeInfo = [];
-
-  //avoid google OVER_QUERY_LIMIT
-  getDetail(places.slice(0, 9));
-  for (let i = 1; i < Math.round(places.length / 10); i++) {
-    setTimeout(getDetail, 4000 * i, places.slice(10 * i, 10 * (i + 1) - 1));
+  if (temp_placeInfo.length != 0) {
+    console.log("get place detail again");
+    setTimeout(getPlaceDetail, 2000, temp_placeInfo);
+    temp_placeInfo = [];
   }
 }
 
@@ -94,7 +93,7 @@ export function hidePlaceDetail() {
   detailBlock.classList.add("blind");
 }
 
-export function showPlaceDetail(clicked_place_name) {
+window.showPlaceDetail = function (clicked_place_name) {
   placeInfo.forEach(async function (place) {
     console.log(place.name);
 
@@ -136,7 +135,7 @@ export function showPlaceDetail(clicked_place_name) {
       document.getElementById("weekday").innerHTML = weekday_text;
     }
   });
-}
+};
 
 export function getCurrentTime() {
   let currentTime = new Date();

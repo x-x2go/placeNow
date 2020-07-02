@@ -52,7 +52,7 @@
   padding: 7px;
   font-size: 14px;
 }
-.moreDetail {
+.more_detail {
   width: 25px;
   height: 25px;
   float: right;
@@ -63,7 +63,7 @@
   line-height: 1;
   cursor: pointer;
 }
-.moreDetail:hover {
+.more_detail:hover {
   background-image: linear-gradient(to right, #37ecba, #72afd3);
   color: #ffffff;
 }
