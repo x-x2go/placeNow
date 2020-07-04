@@ -115,9 +115,8 @@ window.showPlaceDetail = function (clicked_place_name) {
 
       if (place.opening_hours.open_now != undefined) {
         if (place.opening_hours.open_now) {
-          document.getElementById("placeIsOpen").innerHTML = "영업중";
-        } else {
-          document.getElementById("placeIsOpen").innerHTML = "영업종료";
+          document.getElementById("placeIsOpen").src =
+            "https://place-now.s3.ap-northeast-2.amazonaws.com/logo/now_open.png";
         }
       }
 

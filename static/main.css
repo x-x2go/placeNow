@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Myeongjo&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic&display=swap);
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 
@@ -18,6 +18,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: "Nanum Gothic", sans-serif;
 }
 #description {
   font-family: Roboto;
@@ -383,7 +384,7 @@ button {
 .info_title {
   border-bottom: 1px solid #cdcdcd;
   padding: 10px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: BOLD;
   color: darkslateblue;
 }
@@ -417,7 +418,7 @@ button {
   height: 350px;
   margin: 10px;
   margin-top: 50px;
-  font-family: "Nanum Myeongjo", serif;
+  font-family: "Nanum Gothic", sans-serif;
 }
 #placeDetail h1 {
   font-weight: bold;
@@ -445,19 +446,13 @@ button {
   margin: 0 5px;
 }
 .place_isOpen {
-  width: 100px;
-  height: 35px;
-  font-family: "Jua", sans-serif;
-  letter-spacing: 5px;
-  text-align: center;
   float: right;
   margin: 7px 0;
   margin-right: 20px;
-  border-radius: 30px;
-  background-image: linear-gradient(to right, #37ecba, #72afd3);
-  font-size: 20px;
-  line-height: 2;
-  color: #fff;
+}
+
+.place_isOpen img {
+  width: 95px;
 }
 
 #placeDetail span {
