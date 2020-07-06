@@ -48,7 +48,7 @@ export function makePlaceMarker(places) {
       url: place_icon,
       size: new google.maps.Size(40, 40),
       origin: new google.maps.Point(0, 0),
-      anchor: new google.maps.Point(17, 34),
+      anchor: new google.maps.Point(20, 40),
       scaledSize: new google.maps.Size(40, 40),
     };
 

@@ -9,6 +9,10 @@ export function initPopup() {
 export function createPopup(position, content) {
   popup = new Popup(position, content);
   popup.setMap(map);
+
+  map.addListener("click", function () {
+    removePopup();
+  });
 }
 
 export function removePopup() {
