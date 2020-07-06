@@ -4,6 +4,16 @@ import { Popup, createPopup, removePopup } from "./makePopup";
 
 export var markers = [];
 let infowindow_contents = [];
+const place_type = [
+  "cafe",
+  "restaurent",
+  "bakery",
+  "supermarket",
+  "shopping_mall",
+  "hospital",
+  "pharmacy",
+  "bank",
+];
 
 export function clearMarker() {
   markers.forEach(function (marker) {
@@ -26,12 +36,20 @@ export function makePlaceMarker(places) {
       return;
     }
 
+    let place_icon;
+    if (place_type.includes(place.types[0])) {
+      place_icon = `https://place-now.s3.ap-northeast-2.amazonaws.com/marker/icon_${place.types[0]}.png`;
+    } else {
+      place_icon =
+        "https://place-now.s3.ap-northeast-2.amazonaws.com/marker/icon_etc.png";
+    }
+
     const icon = {
-      url: place.icon,
-      size: new google.maps.Size(25, 25),
+      url: place_icon,
+      size: new google.maps.Size(40, 40),
       origin: new google.maps.Point(0, 0),
       anchor: new google.maps.Point(17, 34),
-      scaledSize: new google.maps.Size(25, 25),
+      scaledSize: new google.maps.Size(40, 40),
     };
 
     // Create a marker for each place.
