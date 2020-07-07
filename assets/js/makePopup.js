@@ -61,7 +61,7 @@ function createPopupClass() {
 
     if (display === "block") {
       this.contentNode.style.left = divPosition.x + "px";
-      this.contentNode.style.top = divPosition.y + "px";
+      this.contentNode.style.top = divPosition.y - 20 + "px";
     }
 
     if (this.contentNode.style.display !== display) {

@@ -21,11 +21,9 @@ export function clearMarker() {
   });
   markers = [];
 }
-let infowindow;
 
 export function makePlaceMarker(places) {
   let bounds = new google.maps.LatLngBounds();
-  infowindow = new google.maps.InfoWindow();
 
   infowindow_contents = [];
 
@@ -36,16 +34,9 @@ export function makePlaceMarker(places) {
       return;
     }
 
-    let place_icon;
-    if (place_type.includes(place.types[0])) {
-      place_icon = `https://place-now.s3.ap-northeast-2.amazonaws.com/marker/icon_${place.types[0]}.png`;
-    } else {
-      place_icon =
-        "https://place-now.s3.ap-northeast-2.amazonaws.com/marker/icon_etc.png";
-    }
-
     const icon = {
-      url: place_icon,
+      url:
+        "https://place-now.s3.ap-northeast-2.amazonaws.com/marker/icon_default.png",
       size: new google.maps.Size(40, 40),
       origin: new google.maps.Point(0, 0),
       anchor: new google.maps.Point(20, 40),
@@ -59,6 +50,7 @@ export function makePlaceMarker(places) {
       icon: icon,
       title: place.name,
       position: place.geometry.location,
+      type: place.type,
     });
 
     markers.push(marker);
@@ -91,7 +83,9 @@ function makeInfowindow(place) {
     place.name +
     "</div><div class='more_detail' onclick='showPlaceDetail(\"" +
     place.name +
-    "\")'>&#62;</div></div><div class='info_rest'>" +
+    '");selectedMarker("' +
+    place.types[0] +
+    "\");'>&#62;</div></div><div class='info_rest'>" +
     vicinity +
     "<br>⭐" +
     rating +
@@ -99,20 +93,49 @@ function makeInfowindow(place) {
   infowindow_contents.push(temp_content);
 }
 
+window.selectedMarker = function (place_types) {
+  let place_icon;
+  if (place_type.includes(place_types)) {
+    place_icon = `https://place-now.s3.ap-northeast-2.amazonaws.com/marker/icon_${place_types}.png`;
+  } else {
+    place_icon =
+      "https://place-now.s3.ap-northeast-2.amazonaws.com/marker/icon_default.png";
+  }
+  now_marker.setIcon({
+    url: place_icon,
+    scaledSize: new google.maps.Size(70, 70),
+  });
+};
+
+function changeMarker(prev_marker, marker) {
+  if (prev_marker != undefined) {
+    prev_marker.setIcon({
+      url:
+        "https://place-now.s3.ap-northeast-2.amazonaws.com/marker/icon_default.png",
+      scaledSize: new google.maps.Size(40, 40),
+    });
+  }
+  marker.setIcon({
+    url:
+      "https://place-now.s3.ap-northeast-2.amazonaws.com/marker/icon_dot.png",
+    scaledSize: new google.maps.Size(10, 10),
+  });
+}
+
+let prev_marker;
+let now_marker;
+
 function showInfowindow(markers) {
   for (let i = 0; i < markers.length; i++) {
     google.maps.event.addListener(markers[i], "click", async function () {
       if (infowindow_contents[i]) {
-        // infowindow.setContent(infowindow_contents[i]);
-        // infowindow.setPosition(markers[i].position);
-        // await infowindow.open(map, markers[i]);
+        now_marker = markers[i];
+
         await removePopup();
         await createPopup(markers[i].position, infowindow_contents[i]);
 
         const moreDetail = document.getElementById("moreDetail");
-        console.log(moreDetail);
         if (moreDetail) {
-          console.log("moreDetai is define");
           moreDetail.addEventListener("click", function () {
             console.log("click");
             showPlaceDetail(markers[i].title);
@@ -121,6 +144,8 @@ function showInfowindow(markers) {
 
         console.log("marker: " + markers[i].title);
       }
+      changeMarker(prev_marker, markers[i]);
+      prev_marker = markers[i];
     });
   }
 }

@@ -1,6 +1,7 @@
 import { map } from "./initMap";
 import { service } from "./category";
 import { clearMarker, makePlaceMarker } from "./makeMarker";
+import { removePopup } from "./makePopup";
 
 const timeSelection = document.getElementById("timeSelection");
 const setTimeBtn = document.getElementById("setTimeButton");
@@ -94,9 +95,8 @@ export function hidePlaceDetail() {
 }
 
 window.showPlaceDetail = function (clicked_place_name) {
+  removePopup();
   placeInfo.forEach(async function (place) {
-    console.log(place.name);
-
     if (clicked_place_name == place.name) {
       if (detailBlock.classList.contains("blind")) {
         detailBlock.classList.remove("blind");

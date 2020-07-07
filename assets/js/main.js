@@ -5,3 +5,4 @@ import "./searchBox";
 import "./makeMarker";
 import "./placeDetail";
 import "./category";
+import "./makePopup";
