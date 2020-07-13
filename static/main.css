@@ -294,6 +294,16 @@ button {
   box-shadow: 1px 1px 8px 1px #dcdcdc;
 }
 
+@media screen and (max-width: 800px) {
+  #searchBar {
+    width: 30%;
+  }
+  #pac-input {
+    width: 50%;
+    display: block;
+  }
+}
+
 #searchDetail {
   position: absolute;
   width: 60%;
@@ -341,6 +351,28 @@ button {
   width: 10px;
   height: 10px;
   float: right;
+}
+
+@media screen and (max-width: 800px) {
+  #searchDetail {
+    width: 100px;
+    height: fit-content;
+    text-align: left;
+    left: 35%;
+  }
+  #searchDetail button {
+    display: block;
+    font-size: 1.4vw;
+  }
+  #timeSelection {
+    width: 50px;
+  }
+  #timeBar {
+    text-align: initial;
+  }
+  #setTimeButton {
+    width: 30px !important;
+  }
 }
 
 .popup_wrap {

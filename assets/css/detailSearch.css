@@ -46,3 +46,25 @@
   height: 10px;
   float: right;
 }
+
+@media screen and (max-width: 800px) {
+  #searchDetail {
+    width: 100px;
+    height: fit-content;
+    text-align: left;
+    left: 35%;
+  }
+  #searchDetail button {
+    display: block;
+    font-size: 1.4vw;
+  }
+  #timeSelection {
+    width: 50px;
+  }
+  #timeBar {
+    text-align: initial;
+  }
+  #setTimeButton {
+    width: 30px !important;
+  }
+}

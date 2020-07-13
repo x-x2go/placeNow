@@ -5,8 +5,12 @@ import { getPlaceDetail, getCurrentTime } from "./placeDetail";
 const searchBar = document.getElementById("searchBar");
 const searchCafe = document.getElementById("cafe");
 const searchRestaurants = document.getElementById("restaurants");
+const searchBakery = document.getElementById("bakery");
 const searchMarket = document.getElementById("market");
+const searchShoppingMall = document.getElementById("shopping_mall");
 const searchHospital = document.getElementById("hospital");
+const searchPharmacy = document.getElementById("pharmacy");
+const searchBank = document.getElementById("bank");
 const openSearchBar = document.getElementById("searchDetail");
 const openNow = document.getElementById("openNow");
 const searchAgain = document.getElementById("searchAgain");
@@ -106,10 +110,22 @@ function init() {
   searchRestaurants.addEventListener("click", function () {
     showPlace("restaurant");
   });
+  searchBakery.addEventListener("click", function () {
+    showPlace("bakery");
+  });
   searchMarket.addEventListener("click", function () {
     showPlace("supermarket");
   });
+  searchShoppingMall.addEventListener("click", function () {
+    showPlace("shopping_mall");
+  });
   searchHospital.addEventListener("click", function () {
     showPlace("hospital");
+  });
+  searchPharmacy.addEventListener("click", function () {
+    showPlace("pharmacy");
+  });
+  searchMarket.addEventListener("click", function () {
+    showPlace("bank");
   });
 }

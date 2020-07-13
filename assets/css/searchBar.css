@@ -64,3 +64,13 @@ button {
 #pac-input:focus {
   box-shadow: 1px 1px 8px 1px #dcdcdc;
 }
+
+@media screen and (max-width: 800px) {
+  #searchBar {
+    width: 30%;
+  }
+  #pac-input {
+    width: 50%;
+    display: block;
+  }
+}
