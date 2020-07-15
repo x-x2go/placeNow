@@ -462,8 +462,18 @@ button {
   font-size: 20px;
 }
 .place_title {
-  width: 280px;
+  width: 250px;
+  display: inline-block;
   border-bottom: 1.5px solid #cdcdcd;
+}
+#closeButton {
+  width: 30px;
+  float: right;
+  font-size: 30px;
+  text-align: center;
+  line-height: 1.5;
+  color: #cdcdcd;
+  cursor: pointer;
 }
 .info_row {
   width: 100%;

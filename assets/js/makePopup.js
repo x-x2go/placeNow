@@ -1,4 +1,5 @@
 import { map } from "./initMap";
+import { initMarker } from "./makeMarker";
 
 let Popup, popup;
 
@@ -12,6 +13,7 @@ export function createPopup(position, content) {
 
   map.addListener("click", function () {
     removePopup();
+    initMarker();
   });
 }
 

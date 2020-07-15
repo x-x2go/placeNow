@@ -1,11 +1,12 @@
 import { map } from "./initMap";
 import { service } from "./category";
-import { clearMarker, makePlaceMarker } from "./makeMarker";
+import { clearMarker, makePlaceMarker, initMarker } from "./makeMarker";
 import { removePopup } from "./makePopup";
 
 const timeSelection = document.getElementById("timeSelection");
 const setTimeBtn = document.getElementById("setTimeButton");
 const detailBlock = document.getElementById("placeDetail");
+const closeBtn = document.getElementById("closeButton");
 
 let placeInfo = [];
 //place detail
@@ -134,6 +135,13 @@ window.showPlaceDetail = function (clicked_place_name) {
       document.getElementById("weekday").innerHTML = weekday_text;
     }
   });
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function () {
+      detailBlock.classList.add("blind");
+      initMarker();
+    });
+  }
 };
 
 export function getCurrentTime() {

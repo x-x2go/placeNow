@@ -107,6 +107,18 @@ window.selectedMarker = function (place_types) {
   });
 };
 
+export function initMarker() {
+  if (markers.length > 0) {
+    markers.forEach(function (marker) {
+      marker.setIcon({
+        url:
+          "https://place-now.s3.ap-northeast-2.amazonaws.com/marker/icon_default.png",
+        scaledSize: new google.maps.Size(40, 40),
+      });
+    });
+  }
+}
+
 function changeMarker(prev_marker, marker) {
   if (prev_marker != undefined) {
     prev_marker.setIcon({
