@@ -24,6 +24,7 @@ export async function getPlaceDetail(temp_places) {
         "geometry",
         "opening_hours",
         "rating",
+        "type",
         "icon",
       ],
     };

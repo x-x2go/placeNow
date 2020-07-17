@@ -34,6 +34,7 @@ export function searchBox() {
     // Clear out the old markers.
     // 예전의 marker들을 지움
 
+    clearMarker();
     makePlaceMarker(places);
     getPlaceDetail(places);
   });
