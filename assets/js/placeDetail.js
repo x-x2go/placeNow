@@ -5,7 +5,7 @@ import { removePopup } from "./makePopup";
 
 const timeSelection = document.getElementById("timeSelection");
 const setTimeBtn = document.getElementById("setTimeButton");
-const detailBlock = document.getElementById("placeDetail");
+const detailBlock = document.getElementById("detailBlock");
 const closeBtn = document.getElementById("closeButton");
 
 let placeInfo = [];

@@ -9,45 +9,55 @@
   </head>
   <body>
     <div id="searchBar">
+      <div id="mainLogo">
+        <img
+          src="https://place-now.s3.ap-northeast-2.amazonaws.com/logo/logo.png"
+          alt="place-now logo"
+        />
+      </div>
       <input
         id="pac-input"
         class="controls"
         type="text"
         placeholder="Search Box"
       />
-      <button id="cafe"><i class="fas fa-coffee"></i></button>
-      <button id="restaurants"><i class="fas fa-utensils"></i></button>
-      <button id="bakery"><i class="fas fa-bread-slice"></i></button>
-      <button id="market"><i class="fas fa-shopping-cart"></i></button>
-      <button id="shopping_mall"><i class="fas fa-store"></i></button>
-      <button id="hospital"><i class="fas fa-hospital-alt"></i></button>
-      <button id="pharmacy"><i class="fas fa-pills"></i></button>
-      <button id="bank"><i class="fas fa-piggy-bank"></i></button>
+      <div class="category">
+        <button id="cafe"><i class="fas fa-coffee"></i></button>
+        <button id="restaurants"><i class="fas fa-utensils"></i></button>
+        <button id="bakery"><i class="fas fa-bread-slice"></i></button>
+        <button id="market"><i class="fas fa-shopping-cart"></i></button>
+        <button id="shopping_mall"><i class="fas fa-store"></i></button>
+        <button id="hospital"><i class="fas fa-hospital-alt"></i></button>
+        <button id="pharmacy"><i class="fas fa-pills"></i></button>
+        <button id="bank"><i class="fas fa-piggy-bank"></i></button>
+      </div>
 
-      <div id="placeDetail" class="blind">
-        <div class="place_title" id="placeTitle"></div>
-        <div id="closeButton">X</div>
-        <div class="info_row">
-          <div class="place_rating" id="placeRating"></div>
-          <div class="place_isOpen">
-            <img
-              id="placeIsOpen"
-              src="https://place-now.s3.ap-northeast-2.amazonaws.com/logo/now_close.png"
-            />
+      <div class="wrap_placeDetail blind" id="detailBlock">
+        <div id="placeDetail">
+          <div class="place_title" id="placeTitle"></div>
+          <div class="info_row">
+            <div class="place_rating" id="placeRating"></div>
+            <div class="place_isOpen">
+              <img
+                id="placeIsOpen"
+                src="https://place-now.s3.ap-northeast-2.amazonaws.com/logo/now_close.png"
+              />
+            </div>
+          </div>
+          <div class="info_block">
+            <span><i class="fas fa-map-marker-alt"></i></span>
+            <div class="place_info" id="address"></div>
+          </div>
+          <div class="info_block">
+            <span><i class="fas fa-phone-alt"></i></span>
+            <div class="place_info" id="tel"></div>
+          </div>
+          <div class="info_block">
+            <span><i class="fas fa-clock"></i></span>
+            <div class="place_info" id="weekday"></div>
           </div>
         </div>
-        <div>
-          <span><i class="fas fa-map-marker-alt"></i></span>
-          <div class="place_info" id="address"></div>
-        </div>
-        <div>
-          <span><i class="fas fa-phone-alt"></i></span>
-          <div class="place_info" id="tel"></div>
-        </div>
-        <div>
-          <span><i class="fas fa-clock"></i></span>
-          <div class="place_info" id="weekday"></div>
-        </div>
+        <div id="closeButton">X</div>
       </div>
     </div>
 

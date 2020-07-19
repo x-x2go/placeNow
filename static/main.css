@@ -235,20 +235,31 @@ button {
   resize: none;
 }
 
+#mainLogo img {
+  margin-top: 20px;
+  margin-left: 10px;
+  width: 200px;
+}
+
 #searchBar {
   width: 300px;
   height: 100%;
   float: left;
+  background-color: #efefef;
 }
 
 #searchBar button {
   width: 50px;
   height: 50px;
   display: inline-block;
-  margin: 10px;
+  margin: 8px;
   border-radius: 30px;
   justify-content: center;
   color: #fff;
+}
+
+.category {
+  margin: 0 5px;
 }
 
 #cafe {
@@ -446,11 +457,13 @@ button {
 }
 
 #placeDetail {
+  display: inline-block;
   width: 280px;
-  height: 350px;
   margin: 10px;
-  margin-top: 50px;
   font-family: "Nanum Gothic", sans-serif;
+  position: absolute;
+  z-index: 2;
+  background-color: #fff;
 }
 #placeDetail h1 {
   font-weight: bold;
@@ -459,25 +472,39 @@ button {
 }
 #placeDetail h2 {
   font-weight: 500;
-  font-size: 20px;
+  font-size: 18px;
 }
+
+.wrap_placeDetail {
+  width: 350px;
+}
+
 .place_title {
   width: 250px;
   display: inline-block;
+  margin: 5px;
   border-bottom: 1.5px solid #cdcdcd;
 }
 #closeButton {
-  width: 30px;
-  float: right;
-  font-size: 30px;
-  text-align: center;
-  line-height: 1.5;
-  color: #cdcdcd;
+  display: inline-block;
+  width: 40px;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 25px;
+  padding-right: 5px;
+  text-align: right;
+  line-height: 1.2;
+  color: #ffffff;
   cursor: pointer;
+  background-color: #bcbcbc;
+  position: absolute;
+  left: 270px;
+  margin-top: 10px;
+  z-index: 1;
 }
 .info_row {
   width: 100%;
-  margin: 10px 0;
+  margin-bottom: 5px;
 }
 .place_rating {
   margin: 15px 0;
@@ -494,7 +521,7 @@ button {
 }
 
 .place_isOpen img {
-  width: 95px;
+  width: 85px;
 }
 
 #placeDetail span {
@@ -511,6 +538,12 @@ button {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 20px;
+}
+
+.info_block {
+  margin: 5px;
+  background-color: #efefef;
+  border-radius: 10px;
 }
 
 .place_info {
