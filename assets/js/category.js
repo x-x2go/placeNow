@@ -1,6 +1,6 @@
 import { map } from "./initMap";
 import { clearMarker, makePlaceMarker } from "./makeMarker";
-import { getPlaceDetail, getCurrentTime } from "./placeDetail";
+import { getPlaceDetail, setTimeSelection } from "./placeDetail";
 
 const searchBar = document.getElementById("searchBar");
 const searchCafe = document.getElementById("cafe");
@@ -48,7 +48,7 @@ function isOpen(placeType) {
     openNow_buttonOn = true;
     openNow.style.backgroundColor = "#FF6E6E";
     showOpenPlace(placeType);
-    getCurrentTime();
+    setTimeSelection();
   } else {
     openNow_buttonOn = false;
     openNow.style.backgroundColor = "#cdcdcd";

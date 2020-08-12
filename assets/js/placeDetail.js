@@ -45,8 +45,9 @@ export async function getPlaceDetail(temp_places) {
   }
 }
 
-function findIsOpen(periods, dayOfWeek) {
-  const searchTime = Number(timeSelection.value.replace(":", ""));
+function findIsOpen(periods, searchTime) {
+  const currentTime = new Date();
+  const dayOfWeek = currentTime.getDay();
 
   for (let i = 0; i < periods.length; i++) {
     //예외: 24시간 영업 시
@@ -68,23 +69,23 @@ function findIsOpen(periods, dayOfWeek) {
 }
 
 function searchByTime() {
-  const currentTime = new Date();
-  const dayOfWeek = currentTime.getDay();
+  const searchTime = Number(timeSelection.value.replace(":", ""));
 
   const openPlaces = placeInfo.filter((place) => {
     if (!place.opening_hours) return false;
-    return findIsOpen(place.opening_hours.periods, dayOfWeek);
+    return findIsOpen(place.opening_hours.periods, searchTime);
   });
 
-  // placeInfo = openPlaces;
+  placeInfo = openPlaces;
   clearMarker();
-  makePlaceMarker(openPlaces);
+  makePlaceMarker(placeInfo);
 }
 
 export function hidePlaceDetail() {
   detailBlock.classList.add("blind");
 }
 
+// side bar에 장소 정보가 나타남
 window.showPlaceDetail = function (clicked_place_name) {
   removePopup();
   placeInfo.forEach(async function (place) {
@@ -96,19 +97,20 @@ window.showPlaceDetail = function (clicked_place_name) {
       document.getElementById("placeTitle").innerHTML =
         "<h1>" + place.name + "</h1>";
 
-      if (place.rating) {
-        document.getElementById("placeRating").innerHTML =
-          "<h2><i class='fas fa-star'></i>" + place.rating + "</h2>";
-      } else {
-        document.getElementById("placeRating").innerHTML =
-          "<h2><i class='fas fa-star'></i>별점없음</h2>";
-      }
+      document.getElementById("placeRating").innerHTML =
+        "<h2><i class='fas fa-star'></i>" +
+        (place.rating || "별점없음") +
+        "</h2>";
 
-      if (place.opening_hours.open_now != undefined) {
-        if (place.opening_hours.open_now) {
-          document.getElementById("placeIsOpen").src =
-            "https://place-now.s3.ap-northeast-2.amazonaws.com/logo/now_open.png";
-        }
+      if (
+        place.opening_hours.periods &&
+        findIsOpen(
+          place.opening_hours.periods,
+          Number(getCurrentTime().replace(":", ""))
+        )
+      ) {
+        document.getElementById("placeIsOpen").src =
+          "https://place-now.s3.ap-northeast-2.amazonaws.com/logo/now_open.png";
       }
 
       document.getElementById("address").innerHTML = place.formatted_address;
@@ -116,9 +118,9 @@ window.showPlaceDetail = function (clicked_place_name) {
 
       let weekday_text = "";
       if (place.opening_hours) {
-        for (let i = 0; i < place.opening_hours.weekday_text.length; i++) {
-          weekday_text += place.opening_hours.weekday_text[i] + "<br>";
-        }
+        place.opening_hours.weekday_text.forEach((text) => {
+          weekday_text += text + "<br>";
+        });
       } else {
         weekday_text += "영업시간 정보가 없습니다😥";
       }
@@ -134,13 +136,19 @@ window.showPlaceDetail = function (clicked_place_name) {
   }
 };
 
-export function getCurrentTime() {
+// 현재 시간 구하기
+function getCurrentTime() {
   let currentTime = new Date();
   const currentMin =
     (currentTime.getMinutes() < 10 ? "0" : "") + currentTime.getMinutes();
   const currentHours =
     (currentTime.getHours() < 10 ? "0" : "") + currentTime.getHours();
-  timeSelection.setAttribute("value", `${currentHours}:${currentMin}`);
+  return currentHours + ":" + currentMin;
+}
+
+// time selection 현재 시간으로 setting
+export function setTimeSelection() {
+  timeSelection.setAttribute("value", getCurrentTime());
 }
 
 if (setTimeBtn) {
