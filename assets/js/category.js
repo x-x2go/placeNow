@@ -18,7 +18,6 @@ const closeBtn = document.getElementById("closeAll");
 
 export let service;
 let center;
-
 let openNow_buttonOn = false;
 
 export function searchBtn() {
@@ -125,7 +124,7 @@ function init() {
   searchPharmacy.addEventListener("click", function () {
     showPlace("pharmacy");
   });
-  searchMarket.addEventListener("click", function () {
+  searchBank.addEventListener("click", function () {
     showPlace("bank");
   });
 }

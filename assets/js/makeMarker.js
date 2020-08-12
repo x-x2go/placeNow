@@ -69,15 +69,9 @@ export function makePlaceMarker(places) {
 }
 
 function makeInfowindow(place) {
-  let rating = "별점 없음";
-  if (place.rating) {
-    rating = place.rating;
-  }
+  const rating = place.rating || "별점 없음";
+  const vicinity = place.vicinity || place.formatted_address;
 
-  let vicinity = place.vicinity;
-  if (!place.vicinity) {
-    vicinity = place.formatted_address;
-  }
   const temp_content =
     "<div id='infoTitle' class='info_title'><div class='place_name'>" +
     place.name +
@@ -90,17 +84,15 @@ function makeInfowindow(place) {
     "<br>⭐" +
     rating +
     "</div>";
+
   infowindow_contents.push(temp_content);
 }
 
 window.selectedMarker = function (place_types) {
-  let place_icon;
-  if (place_type.includes(place_types)) {
-    place_icon = `https://place-now.s3.ap-northeast-2.amazonaws.com/marker/icon_${place_types}.png`;
-  } else {
-    place_icon =
-      "https://place-now.s3.ap-northeast-2.amazonaws.com/marker/icon_default.png";
-  }
+  const place_icon = place_type.includes(place_types)
+    ? `https://place-now.s3.ap-northeast-2.amazonaws.com/marker/icon_${place_types}.png`
+    : "https://place-now.s3.ap-northeast-2.amazonaws.com/marker/icon_default.png";
+
   now_marker.setIcon({
     url: place_icon,
     scaledSize: new google.maps.Size(70, 70),

@@ -45,51 +45,40 @@ export async function getPlaceDetail(temp_places) {
   }
 }
 
-function searchByTime() {
+function findIsOpen(periods, dayOfWeek) {
   const searchTime = Number(timeSelection.value.replace(":", ""));
+
+  for (let i = 0; i < periods.length; i++) {
+    //예외: 24시간 영업 시
+    if (!periods[i].close) return true;
+    if (periods[i].open.day == dayOfWeek) {
+      let openTime = Number(periods[i].open.time);
+      let closeTime = Number(periods[i].close.time);
+
+      if (openTime > closeTime) {
+        // 예외: 새벽까지 영업 시
+        if (openTime <= searchTime || searchTime <= closeTime) return true;
+      } else {
+        if (openTime <= searchTime && searchTime <= closeTime) return true;
+      }
+      return false;
+    }
+  }
+  return false;
+}
+
+function searchByTime() {
   const currentTime = new Date();
   const dayOfWeek = currentTime.getDay();
 
-  let openPlaces = [];
-
-  // Need to change simple!
-  placeInfo.forEach(function (place) {
-    let period;
-
-    /*****/
-    if (!place.opening_hours) return;
-
-    for (let i = 0; i < place.opening_hours.periods.length; i++) {
-      period = place.opening_hours.periods[i];
-
-      //예외: 24시간 영업 시
-      if (!period.close) {
-        openPlaces.push(place);
-
-        continue;
-      }
-
-      if (period.open.day == dayOfWeek) {
-        let openTime = Number(period.open.time);
-        let closeTime = Number(period.close.time);
-
-        if (openTime > closeTime) {
-          // 예외: 새벽까지 영업 시
-          if (openTime <= searchTime || searchTime <= closeTime) {
-            openPlaces.push(place);
-          }
-        } else {
-          if (openTime <= searchTime && searchTime <= closeTime) {
-            openPlaces.push(place);
-          }
-        }
-      }
-    }
+  const openPlaces = placeInfo.filter((place) => {
+    if (!place.opening_hours) return false;
+    return findIsOpen(place.opening_hours.periods, dayOfWeek);
   });
 
-  placeInfo = openPlaces;
+  // placeInfo = openPlaces;
   clearMarker();
-  makePlaceMarker(placeInfo);
+  makePlaceMarker(openPlaces);
 }
 
 export function hidePlaceDetail() {
