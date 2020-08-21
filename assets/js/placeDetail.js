@@ -7,6 +7,7 @@ const timeSelection = document.getElementById("timeSelection");
 const setTimeBtn = document.getElementById("setTimeButton");
 const detailBlock = document.getElementById("detailBlock");
 const closeBtn = document.getElementById("closeButton");
+const category = document.getElementById("category");
 
 let placeInfo = [];
 //place detail
@@ -88,6 +89,8 @@ export function hidePlaceDetail() {
 // side bar에 장소 정보가 나타남
 window.showPlaceDetail = function (clicked_place_name) {
   removePopup();
+  category.classList.add("blind");
+
   placeInfo.forEach(async function (place) {
     if (clicked_place_name == place.name) {
       if (detailBlock.classList.contains("blind")) {
@@ -131,6 +134,7 @@ window.showPlaceDetail = function (clicked_place_name) {
   if (closeBtn) {
     closeBtn.addEventListener("click", function () {
       detailBlock.classList.add("blind");
+      category.classList.remove("blind");
       initMarker();
     });
   }

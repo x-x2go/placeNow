@@ -100,6 +100,7 @@ function showPlace(placeType) {
   closeBtn.addEventListener("click", closeAll);
 }
 
+// 카테고리 별 클릭 이벤트
 function init() {
   service = new google.maps.places.PlacesService(map);
 
