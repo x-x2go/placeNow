@@ -113,7 +113,7 @@ window.showPlaceDetail = function (clicked_place_name) {
         )
       ) {
         document.getElementById("placeIsOpen").src =
-          "https://place-now.s3.ap-northeast-2.amazonaws.com/logo/now_open.png";
+          "https://place-now.s3.ap-northeast-2.amazonaws.com/logo/now_open2.png";
       }
 
       document.getElementById("address").innerHTML = place.formatted_address;

@@ -2,7 +2,7 @@
        * element that contains the map. */
 
 #map_wrap {
-  width: calc(100% - 300px);
+  width: calc(100% - 350px);
   height: 100%;
   float: left;
 }

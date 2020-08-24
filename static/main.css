@@ -3,7 +3,7 @@
        * element that contains the map. */
 
 #map_wrap {
-  width: calc(100% - 300px);
+  width: calc(100% - 350px);
   height: 100%;
   float: left;
 }
@@ -236,14 +236,15 @@ button {
 }
 
 #mainLogo img {
-  margin-top: 20px;
-  margin-left: 10px;
+  margin: 10px;
+  margin-top: 40px;
   width: 200px;
 }
 
 #searchBar {
-  width: 300px;
+  width: 350px;
   height: 100%;
+  text-align: center;
   float: left;
   background-color: #efefef;
 }
@@ -252,7 +253,7 @@ button {
   width: 50px;
   height: 50px;
   display: inline-block;
-  margin: 8px;
+  margin: 10px;
   border-radius: 30px;
   justify-content: center;
   color: #fff;
@@ -260,6 +261,7 @@ button {
 
 .category {
   margin: 0 5px;
+  text-align: center;
 }
 
 #cafe {
@@ -296,7 +298,7 @@ button {
   padding: 5px 11px 5px 13px;
   margin: 20px;
   text-overflow: ellipsis;
-  width: 220px;
+  width: 240px;
   border: 1px solid #dcdcdc;
   border-radius: 30px;
 }
@@ -317,7 +319,7 @@ button {
 
 #searchDetail {
   position: absolute;
-  width: 60%;
+  width: 50%;
   height: 60px;
   z-index: 1;
   right: 10%;
@@ -457,8 +459,7 @@ button {
 }
 
 #placeDetail {
-  display: inline-block;
-  width: 280px;
+  width: 330px;
   margin: 10px;
   font-family: "Nanum Gothic", sans-serif;
   position: absolute;
@@ -467,12 +468,12 @@ button {
 }
 #placeDetail h1 {
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 2;
+  margin: 20px 0;
 }
 #placeDetail h2 {
-  font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .wrap_placeDetail {
@@ -480,31 +481,29 @@ button {
 }
 
 .place_title {
-  width: 250px;
+  width: 300px;
   display: inline-block;
-  margin: 5px;
-  border-bottom: 1.5px solid #cdcdcd;
+  margin: 10px;
 }
 #closeButton {
   display: inline-block;
-  width: 40px;
-  height: 30px;
-  border-radius: 5px;
+  width: 60px;
+  height: 60px;
+  border-radius: 35px;
   font-size: 25px;
-  padding-right: 5px;
   text-align: right;
-  line-height: 1.2;
+  line-height: 2.2;
   color: #ffffff;
   cursor: pointer;
   background-color: #bcbcbc;
   position: absolute;
-  left: 270px;
-  margin-top: 10px;
+  left: 310px;
+  margin-top: 12px;
   z-index: 1;
 }
 .info_row {
   width: 100%;
-  margin-bottom: 5px;
+  margin-bottom: 1px;
 }
 .place_rating {
   margin: 15px 0;
@@ -512,38 +511,38 @@ button {
 }
 .place_rating i {
   color: #faeb78;
-  margin: 0 5px;
+  margin: 0 8px;
 }
 .place_isOpen {
   float: right;
-  margin: 7px 0;
-  margin-right: 20px;
+  margin: 0 50px;
 }
 
 .place_isOpen img {
-  width: 85px;
+  height: 50px;
 }
 
 #placeDetail span {
-  width: 25px;
+  width: 30px;
   height: 20px;
   display: inline-block;
-  margin: 15px 5px 15px 10px;
+  margin: 15px 5px 15px 0px;
   vertical-align: top;
+  text-align: left;
 }
 
 #placeDetail span i {
-  background: linear-gradient(to right, #37ecba, #72afd3);
+  /* background: linear-gradient(to right, #37ecba, #72afd3);
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
+  color: #aaaaaa;
   font-size: 20px;
 }
 
 .info_block {
-  margin: 5px;
-  background-color: #efefef;
-  border-radius: 10px;
+  padding: 5px;
+  border-top: 1.2px solid #efefef;
 }
 
 .place_info {
@@ -552,9 +551,8 @@ button {
   width: 200px;
   font-size: 14px;
   font-weight: 200;
-  line-height: 20px;
+  line-height: 25px;
   padding: 5px 0 5px 10px;
-  border-left: 2px solid #dfdfdf;
 }
 
 
