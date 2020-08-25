@@ -486,21 +486,18 @@ button {
   margin: 10px;
 }
 #closeButton {
-  display: inline-block;
-  width: 60px;
-  height: 60px;
-  border-radius: 35px;
-  font-size: 25px;
-  text-align: right;
-  line-height: 2.2;
-  color: #ffffff;
   cursor: pointer;
-  background-color: #bcbcbc;
   position: absolute;
-  left: 310px;
-  margin-top: 12px;
+  left: 320px;
+  margin-top: -11px;
   z-index: 1;
 }
+
+.closeText {
+  position: absolute;
+  left: 35px;
+}
+
 .info_row {
   width: 100%;
   margin-bottom: 1px;
@@ -522,7 +519,7 @@ button {
   height: 50px;
 }
 
-#placeDetail span {
+.icon {
   width: 30px;
   height: 20px;
   display: inline-block;
@@ -553,6 +550,11 @@ button {
   font-weight: 200;
   line-height: 25px;
   padding: 5px 0 5px 10px;
+  text-align: left;
+}
+
+.place_info span {
+  display: inline-block;
 }
 
 

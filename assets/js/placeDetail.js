@@ -120,9 +120,15 @@ window.showPlaceDetail = function (clicked_place_name) {
       document.getElementById("tel").innerHTML = place.formatted_phone_number;
 
       let weekday_text = "";
+      const today = new Date();
+      const today_num = today.getDay() == 0 ? 6 : today.getDay() - 1;
       if (place.opening_hours) {
-        place.opening_hours.weekday_text.forEach((text) => {
-          weekday_text += text + "<br>";
+        place.opening_hours.weekday_text.forEach((text, i) => {
+          weekday_text +=
+            i == today_num
+              ? "<span style='background-color:#faeb78'>"
+              : "<span>";
+          weekday_text += text + "</span>";
         });
       } else {
         weekday_text += "영업시간 정보가 없습니다😥";
